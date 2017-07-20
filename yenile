@@ -1,0 +1,45 @@
+#!/bin/sh
+
+# Homebrew
+echo "—————"
+echo "\nChecking Homebrew packages..."
+brew update > /dev/null;
+new_packages=$(brew outdated --quiet)
+num_packages=$(echo $new_packages | wc -w)
+
+if [ $num_packages -gt 0 ]; then
+	echo "\n$num_packages 🎉  New Homebrew updates available:"
+	
+	for package in $new_packages; do
+		echo "		* $package";
+	done
+	
+	echo "\nInstall Homebrew updates? (y/n)"
+	read answer
+	if echo "$answer" | grep -iq "^y" ; then
+		brew upgrade && echo "\n✅  Homebrew updates are done!"
+	fi
+	
+	echo "\nClean up old versions of Homebrew packages? (y/n)"
+	read answer
+	if echo "$answer" | grep -iq "^y" ; then
+		brew cleanup && echo "\n✅  Homebrew clean up is done!"
+	fi
+	
+else
+	echo "\n🎉  Homebrew is up-to-date."
+fi
+
+echo "\n—————"
+
+# macOS
+echo "\nChecking macOS updates..."
+softwareupdate -l | tail +5
+
+echo "\nInstall macOS updates? (y/n)" 
+read answer
+	if echo "$answer" | grep -iq "^y" ; then
+	sudo softwareupdate -i -a && echo "\n✅  macOS updates are done!\n⚠️  You may need to reboot your machine."
+fi
+
+echo "\n—————"
