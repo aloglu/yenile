@@ -1,8 +1,7 @@
 #!/bin/sh
 
 # Homebrew
-echo "—————"
-echo "\nChecking Homebrew packages..."
+echo "Checking Homebrew packages..."
 brew update > /dev/null;
 new_packages=$(brew outdated --quiet)
 num_packages=$(echo $new_packages | wc -w)
@@ -30,7 +29,7 @@ else
 	echo "\nHomebrew is up-to-date."
 fi
 
-echo "\n—————"
+echo "\n* * * * * * * * * *"
 
 # macOS
 echo "\nChecking macOS updates..."
@@ -41,5 +40,3 @@ read answer
 	if echo "$answer" | grep -iq "^y" ; then
 	sudo softwareupdate -i -a && echo "\n✅  macOS updates are done!\n⚠️  You may need to reboot your machine."
 fi
-
-echo "\n—————"
