@@ -1,6 +1,6 @@
 # yenile
 
-This is a bash script for updating (and upgrading) macOS and Homebrew. macOS has a native CLI for updating and this script takes advantage of that.
+A bash script to update both macOS and Homebrew. macOS has a native CLI to fetch system updates that's faster than the conventional method, which this script takes advantage of.
 
 # Installation & Usage
 
